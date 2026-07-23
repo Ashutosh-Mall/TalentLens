@@ -4,7 +4,7 @@ import Scroll from "../components/Scroll";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white bg-[radial-gradient(circle,#e5e7eb_1px,transparent_1px)] bg-[size:18px_18px]">
-      <div className="flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
         
         <div className="flex items-center gap-2 mb-6 px-4 py-2 border border-gray-200 rounded-full bg-white shadow-sm">
           <FiUsers />
@@ -35,8 +35,6 @@ export default function Home() {
           <button className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100">
             Learn More
           </button>
-        </div>
-        <div className="mt-20">
         </div>
       </div>
       <div className="flex justify-center items-center">
