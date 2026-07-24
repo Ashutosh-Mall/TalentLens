@@ -5,23 +5,23 @@ export default function Scroll() {
   const timelineData = [
     {
       dot: 0.2,
-      title: "Started Learning",
-      desc: "Learned HTML, CSS and JS",
+      title: "Upload Resume",
+      desc: "Upload your resume to get started",
     },
     {
       dot: 0.4,
-      title: "First Project",
-      desc: "Built my first website",
+      title: "Get Analytics",
+      desc: "your resume is analyzed",
     },
     {
       dot: 0.6,
-      title: "React",
-      desc: "Started React development",
+      title: "Improve Your Resume",
+      desc: "Get feedback and suggestions to enhance your resume",
     },
     {
       dot: 0.8,
-      title: "Freelancing",
-      desc: "Worked with clients",
+      title: "Get Hired",
+      desc: "Worked with clients to secure job opportunities",
     },
   ];
   const ref = useRef(null);
@@ -36,7 +36,6 @@ export default function Scroll() {
     setProgress(latest);
   });
 
-  const dots = [0.2, 0.4, 0.6, 0.8];
   const lineHeight = 500;
 
   return (
@@ -56,20 +55,20 @@ export default function Scroll() {
           }}
         />
 
-        {dots.map((dot, index) => (
+        {timelineData.map((data, index) => (
           <div key={index}>
             <div
               className={`absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full transition-all duration-300 ${
-                progress >= dot
+                progress >= data.dot
                   ? "bg-white border-4 border-gray-500 shadow shadow-amber-100 shadow-3lg"
                   : "bg-gray-500"
               }`}
               style={{
-                top: `${dot * 100}%`,
+                top: `${data.dot * 100}%`,
               }}
             />
 
-            {progress >= dot && (
+            {progress >= data.dot && (
               <motion.div
                 initial={{
                   opacity: 0,
@@ -88,14 +87,14 @@ export default function Scroll() {
                   index % 2 === 0 ? "right-10" : "left-10"
                 }`}
                 style={{
-                  top: `${dot * 90}%`,
+                  top: `${data.dot * 90}%`,
                   transform: "translateY(-50%)",
                 }}
               >
                 <div className="w-64 rounded-xl bg-white text-black p-4 shadow-lg">
-                  <h3 className="font-bold">Title {index + 1}</h3>
+                  <h3 className="font-bold">{index + 1} {data.title}</h3>
                   <p className="text-sm text-gray-600">
-                    Description for timeline item {index + 1}
+                    {data.desc}
                   </p>
                 </div>
               </motion.div>

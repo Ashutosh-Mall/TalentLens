@@ -19,7 +19,7 @@ const Navbar = () => {
     {name: "Home", icon: <FaHome />, link: "/"},
     {name: "About", icon: <FaInfoCircle />, link: "/about"},
     {name: "Contact", icon: <FaEnvelope />, link: "/contact"},
-    {name: "GitHub", icon: <FaGithub />, link: "/github"},
+    {name: "GitHub", icon: <FaGithub />, link: "https://github.com/Ashutosh-Mall/TalentLens"},
   ];
 
   return (

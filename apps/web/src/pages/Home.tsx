@@ -1,11 +1,14 @@
-import { FiUsers } from "react-icons/fi";
+import {FiUsers} from "react-icons/fi";
 import Scroll from "../components/Scroll";
+import HeroCard from "../components/HeroCard";
+import { motion } from "framer-motion";
+import Footer from "../components/Footer";
+import Faq from "../components/Faq";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white bg-[radial-gradient(circle,#e5e7eb_1px,transparent_1px)] bg-[size:18px_18px]">
       <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
-        
         <div className="flex items-center gap-2 mb-6 px-4 py-2 border border-gray-200 rounded-full bg-white shadow-sm">
           <FiUsers />
           <span className="text-sm md:text-base text-gray-600">
@@ -37,15 +40,17 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <div className="flex-1">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
+        <motion.div className="w-full lg:flex-1 lg:ml-10" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
+          <HeroCard />
+        </motion.div>
 
-        </div>
-        <div className="flex-2">
-            <Scroll/>
+        <div className="hidden lg:block lg:flex-[2]">
+          <Scroll />
         </div>
       </div>
+      <Faq/>
+      <Footer/>
     </div>
   );
 }
-    
