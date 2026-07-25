@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { prisma } from "@repo/db";
+import authRoute from "./routes/auth.routes.js";
 
 dotenv.config();
 
@@ -11,25 +12,48 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: `process.env.CLIENT_URL`,
+    origin: `${process.env.CLIENT_URL}`,
     credentials: true,
   }),
 );
 
 
 app.use(cookieParser());
-
 app.use(express.json());
+app.use("/api/auth", authRoute);
+
+
 app.get("/db-check", async (req, res) => {
   try {
-    await prisma.$connect();
+    const result = await prisma.$queryRaw`SELECT NOW()`;
 
-    res.status(200).json({
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
+
+
+app.post("/users", async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    const user = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+
+    res.status(201).json({
       success: true,
-      message: "Database connected successfully",
+      user,
     });
   } catch (error) {
-    console.error("DB Error:", error);
+    console.error("User creation error:", error);
 
     res.status(500).json({
       success: false,

@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:22-bookworm-slim
 
 WORKDIR /app
 
@@ -9,6 +9,8 @@ COPY apps/api ./apps/api
 COPY packages ./packages
 
 RUN pnpm install
+
+RUN pnpm --filter @repo/db build
 
 RUN pnpm run build
 
