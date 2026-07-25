@@ -12,7 +12,6 @@ export default function Footer() {
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
-          {/* Brand */}
           <div className="text-center md:text-left">
             <h2 className="text-xl font-bold text-black">
               TalentLens
@@ -22,7 +21,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
             <a href="#" className="hover:text-black transition">
               Features
@@ -38,7 +36,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Socials */}
           <div className="flex items-center gap-4 text-xl text-gray-500">
             <a
               href="#"

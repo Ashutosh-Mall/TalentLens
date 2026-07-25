@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = false;
 
   const navLinks = [
     {name: "Home", icon: <FaHome />, link: "/"},

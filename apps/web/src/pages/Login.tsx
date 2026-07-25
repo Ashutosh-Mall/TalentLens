@@ -1,22 +1,41 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { api } from "../api/api";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await api.post("/auth/login", { email, password });
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
+
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center p-2">
       <div className="max-w-md w-full p-6 border rounded-lg shadow">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
 
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email"
             className="border p-2 rounded"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type="password"
             placeholder="Password"
             className="border p-2 rounded"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
