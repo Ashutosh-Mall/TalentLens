@@ -1,8 +1,13 @@
 import {Link} from "react-router-dom";
 import { api } from "../api/api";
 import {useState} from "react";
+import userStore from "../store/useUserStore";
+import {useNavigate} from "react-router-dom";
 
 export default function Signup() {
+
+  const setUser = userStore((state) => state.setUser);
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +16,8 @@ export default function Signup() {
     e.preventDefault();
     try {
       const response = await api.post("/auth/signup", { name, email, password });
-      console.log("Signup successful:", response.data);
+      setUser(response.data.user);
+      navigate("/");
     } catch (error) {
       console.error("Error signing up:", error);
     }

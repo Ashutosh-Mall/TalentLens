@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { api } from "../api/api";
+import userStore from "../store/useUserStore";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const setUser = userStore((state) => state.setUser);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await api.post("/auth/login", { email, password });
-      console.log("Login successful:", response.data);
+      setUser(response.data.user);
+      navigate("/");
     } catch (error) {
       console.error("Error logging in:", error);
     }

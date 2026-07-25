@@ -43,4 +43,41 @@ const register = async (req: Request, res: Response) => {
     }
 };
 
-export { register };
+const login = async (req: Request, res: Response) => {
+    try {
+        const { email, password } = req.body;   
+        if (!email || !password) {
+            return res
+                .status(400)
+                .json({ message: "Email and password are required." });
+        }
+        const user = await prisma.user.findUnique({ where: { email } });
+        if (!user) {
+            return res.status(400).json({ message: "Invalid email or password." });
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid email or password." });
+        }
+        const userData = { id: user.id, name: user.name, email: user.email };
+        const token = generateToken(user.id);
+        redis.set(`user:${user.id}`, JSON.stringify(userData), "EX", 3600);
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production" || false,
+        });
+
+        res.json({ user: userData });
+    } catch (error) {
+        res.status(500).json({ message: "Error logging in." });
+    }
+};
+
+const logout = (req: Request, res: Response) => {
+    redis.del(`user:${req.userId}`);
+    res.clearCookie("token");
+    res.json({ message: "Logged out successfully." });
+}
+
+export { register, login, logout };
