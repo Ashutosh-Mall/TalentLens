@@ -15,7 +15,7 @@ export default function Login() {
     try {
       const response = await api.post("/auth/login", { email, password });
       setUser(response.data.user);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error logging in:", error);
     }

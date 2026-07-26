@@ -17,7 +17,7 @@ export default function Signup() {
     try {
       const response = await api.post("/auth/signup", { name, email, password });
       setUser(response.data.user);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error signing up:", error);
     }
