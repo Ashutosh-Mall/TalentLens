@@ -80,4 +80,24 @@ const logout = (req: Request, res: Response) => {
     res.json({ message: "Logged out successfully." });
 }
 
-export { register, login, logout };
+const getme = async (req: Request, res: Response) => {
+    try {
+        const userId = req.userId;
+        if (!userId) {
+            return res.status(401).json({ message: "Unauthorized." });
+        }
+        const userData = await redis.get(`user:${userId}`);
+        if (userData) {
+            return res.send(JSON.parse(userData));
+        }
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
+        }
+        res.json({ user });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching user data." });
+    }
+}; 
+
+export { register, login, logout, getme };

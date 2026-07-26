@@ -11,9 +11,8 @@ import {
 } from "react-icons/fa";
 import {Link} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({isLoggedIn}: {isLoggedIn: boolean}) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isLoggedIn = false;
 
   const navLinks = [
     {name: "Home", icon: <FaHome />, link: "/"},
