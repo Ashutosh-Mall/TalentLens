@@ -76,13 +76,15 @@ const Navbar = ({isLoggedIn}: {isLoggedIn: boolean}) => {
 
         {menuOpen && (
           <ul className="md:hidden flex flex-col gap-4 py-4 border-t border-gray-200">
-            {navLinks.map((link) => (
-              <li
-                key={link.name}
-                className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer px-2 py-2 rounded-lg hover:bg-gray-100 transition"
-              >
-                {link.icon}
-                <span>{link.name}</span>
+             {navLinks.map((link) => (
+              <li key={link.name} className="hover:text-black  hover:bg-white">
+                <Link
+                  to={link.link}
+                  className="flex items-center gap-2 text-gray-700 hover:text-black transition duration-300 font-medium"
+                >
+                  {link.icon}
+                  <span>{link.name}</span>
+                </Link>
               </li>
             ))}
           </ul>
