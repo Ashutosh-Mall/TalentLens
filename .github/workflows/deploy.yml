@@ -40,5 +40,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/TalentLens
+            docker image prune -af
+            docker builder prune -af
             docker compose pull
-            docker compose up -d
+            docker compose up -d --force-recreate
