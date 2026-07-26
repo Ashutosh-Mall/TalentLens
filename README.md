@@ -33,10 +33,6 @@ TalentLens is an AI-powered recruitment platform designed to help recruiters and
 
 TalentLens provides a unified interface for candidate sourcing, resume analysis, and team building. The platform uses a microservice-ready monorepo structure with a React frontend single-page application and an Express REST API backend integrated with PostgreSQL and Redis.
 
-## Repository Tags
-
-`recruitment` `ai-platform` `talent-acquisition` `candidate-evaluation` `monorepo` `turborepo` `react19` `express` `prisma` `redis` `docker` `typescript`
-
 ## Features
 
 - Monorepo structure powered by Turborepo and pnpm workspaces for fast, parallelized builds.
