@@ -75,7 +75,8 @@ const Navbar = ({isLoggedIn}: {isLoggedIn: boolean}) => {
         </div>
 
         {menuOpen && (
-          <ul className="md:hidden flex flex-col gap-4 py-4 border-t border-gray-200">
+          <div>
+          <ul className="md:hidden flex flex-col gap-4 py-4 border-t border-gray-200 items-center">
              {navLinks.map((link) => (
               <li key={link.name} className="hover:text-black  hover:bg-white">
                 <Link
@@ -88,6 +89,30 @@ const Navbar = ({isLoggedIn}: {isLoggedIn: boolean}) => {
               </li>
             ))}
           </ul>
+          <ul className="md:hidden flex flex-col gap-4 py-4 border-t border-gray-200 items-center">
+            {isLoggedIn ? (
+              <li>
+                <Link
+                  to="/profile"
+                  className="flex items-center gap-2 text-gray-700 hover:text-black transition duration-300 font-medium"
+                >
+                  <FaUser />
+                  <span>Profile</span>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  to="/login"
+                  className="flex items-center gap-2 text-gray-700 hover:text-black transition duration-300 font-medium"
+                >
+                  <FaSignInAlt />
+                  <span>Login</span>
+                </Link>
+              </li>
+            )}
+          </ul>
+          </div>
         )}
       </div>
     </nav>
