@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { prisma } from "@repo/db";
 import authRoute from "./routes/auth.routes.js";
+import resumeRoute from "./routes/resume.routes.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
+app.use("/api/resume", resumeRoute);
 
 
 app.get("/db-check", async (req, res) => {

@@ -8,23 +8,24 @@ export default function Dashboard() {
   const [jobs, setJobs] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row z-10 top-0 left-0 right-0 fixed">
-      {isSidebarOpen && (
-        <Sidebar
-          isopen={isSidebarOpen}
-          setisopen={setIsSidebarOpen}
-          analytics={analytics}
-          setAnalytics={setAnalytics}
-          jobs={jobs}
-          setJobs={setJobs}
-        />
-      )}
-      <MainContent
-        isopen={isSidebarOpen}
-        setisopen={setIsSidebarOpen}
-        analytics={analytics}
-        jobs={jobs}
-      />
-    </div>
+    <div className="fixed inset-0 flex flex-col md:flex-row bg-gray-100">
+  {isSidebarOpen && (
+    <Sidebar
+      isopen={isSidebarOpen}
+      setisopen={setIsSidebarOpen}
+      analytics={analytics}
+      setAnalytics={setAnalytics}
+      jobs={jobs}
+      setJobs={setJobs}
+    />
+  )}
+
+  <MainContent
+    isopen={isSidebarOpen}
+    setisopen={setIsSidebarOpen}
+    analytics={analytics}
+    jobs={jobs}
+  />
+</div>
   );
 }
