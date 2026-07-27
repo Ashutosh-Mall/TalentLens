@@ -15,7 +15,11 @@ export default function Analytics() {
     formData.append("file", file);
 
     try {
-      const response = await api.post("/resume/upload", formData);
+      const response = await api.post("/resume/upload", formData , {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log(response.data);
 
