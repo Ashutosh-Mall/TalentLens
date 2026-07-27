@@ -40,7 +40,7 @@ export default function Sidebar({
   };
 
   return (
-    <aside className="flex flex-col bg-black text-white p-4 w-full md:w-64 md:h-screen">
+    <aside className="flex-shrink-0 flex flex-col bg-black text-white p-4 w-full md:w-64 md:h-screen">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">Dashboard</h2>
 
