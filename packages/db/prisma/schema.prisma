@@ -16,6 +16,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   resumes Resume[]
+  jobApplications JobApplication[]
 }
 
 model Resume {
@@ -39,3 +40,30 @@ model Resume {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model JobApplication {
+  id        String   @id @default(uuid())
+
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  company   String
+  position  String
+  jobUrl    String?
+
+  status    ApplicationStatus @default(APPLIED)
+
+  appliedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  notes     String? @db.Text
+}
+
+enum ApplicationStatus {
+  APPLIED
+  INTERVIEW
+  OFFER
+  REJECTED
+  WITHDRAWN
+}
+
